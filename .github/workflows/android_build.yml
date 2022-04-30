@@ -15,14 +15,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
+      
       - name: Set Up JDK
         uses: actions/setup-java@v1
         with:
           java-version: 11
-
-      - name: Run Tests
-        run: ./gradlew testDebugUnitTest
-
+          
       - name: Build Project
         run: ./gradlew assembleDebug
