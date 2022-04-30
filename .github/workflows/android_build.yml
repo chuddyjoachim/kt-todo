@@ -1,5 +1,4 @@
 name: Android Build
-
 on:
   pull_request:
     branches:
@@ -8,13 +7,11 @@ on:
     branches:
       - main
       - develop
-
 jobs:
   build:
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-latest    
     steps:
-      - uses: actions/checkout@v2
-      
+      - name: Checkout the code
+      - uses: actions/checkout@v2      
       - name: Build Project
         run: ./gradlew assembleDebug
