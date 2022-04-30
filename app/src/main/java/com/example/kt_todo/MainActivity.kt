@@ -1,0 +1,33 @@
+package com.example.kt_todo
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_main.*
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var todoAdapter: TodoAdapter
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        todoAdapter = TodoAdapter(mutableListOf())
+
+        rvItemsList.adapter = todoAdapter
+        rvItemsList.layoutManager = LinearLayoutManager(this)
+
+        btnAddTodo.setOnClickListener {
+            val todoTitle = todoInput.text.toString()
+            if(todoTitle.isNotEmpty()){
+                val todo = Todo(todoTitle)
+                todoAdapter.addTodo(todo)
+                todoInput.text.clear()
+            }
+        }
+
+        btnDeleteTodo.setOnClickListener {
+            todoAdapter.deleteDoneTodos()
+        }
+
+    }
+}
